@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flowchart Builder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="toolbar">
+    <div class="toolbar-brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <h1>Flowchart Builder</h1>
+    </div>
+    <div class="toolbar-actions">
+      <button type="button" id="btn-new" class="tb-btn" title="Clear the canvas and start over">New</button>
+      <div class="tb-divider" aria-hidden="true"></div>
+      <button type="button" id="btn-undo" class="tb-btn tb-icon" title="Undo (Ctrl+Z)" disabled>
+        <svg viewBox="0 0 24 24" width="18" height="18">
+          <path d="M7 10H16C18.2 10 20 11.8 20 14C20 16.2 18.2 18 16 18H10" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M11 6L7 10L11 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        <span class="sr-only">Undo</span>
+      </button>
+      <button type="button" id="btn-redo" class="tb-btn tb-icon" title="Redo (Ctrl+Y)" disabled>
+        <svg viewBox="0 0 24 24" width="18" height="18">
+          <path d="M17 10H8C5.8 10 4 11.8 4 14C4 16.2 5.8 18 8 18H14" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M13 6L17 10L13 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        <span class="sr-only">Redo</span>
+      </button>
+      <div class="tb-divider" aria-hidden="true"></div>
+      <button type="button" id="btn-export" class="tb-btn tb-btn-primary"
+        title="Export the canvas as a PNG image">Export PNG</button>
+    </div>
+  </header>
+
+  <div class="app-body">
+
+    <aside class="sidebar" aria-label="Flowchart elements">
+      <p class="sidebar-label">Elements</p>
+      <button type="button" class="element-card" draggable="true" data-type="start" title="Add a Start/End node">
+        <span class="element-preview shape-start"></span>
+        <span class="element-name">Start / End</span>
+      </button>
+      <button type="button" class="element-card" draggable="true" data-type="process" title="Add a Process node">
+        <span class="element-preview shape-process"></span>
+        <span class="element-name">Process</span>
+      </button>
+      <button type="button" class="element-card" draggable="true" data-type="decision" title="Add a Decision node">
+        <span class="element-preview shape-decision"></span>
+        <span class="element-name">Decision</span>
+      </button>
+      <button type="button" class="element-card" draggable="true" data-type="io" title="Add an Input/Output node">
+        <span class="element-preview shape-io"></span>
+        <span class="element-name">Input / Output</span>
+      </button>
+      <p class="sidebar-hint">Drag onto the canvas, or click to drop it in the middle.</p>
+    </aside>
+
+    <main class="canvas-wrapper" id="canvas-wrapper">
+      <div class="canvas-scroll" id="canvas-scroll">
+        <div class="canvas" id="canvas">
+          <svg id="connections-layer" class="connections-layer"></svg>
+          <div id="nodes-layer" class="nodes-layer"></div>
+        </div>
+      </div>
+
+      <div class="empty-state" id="empty-state">
+        <p class="empty-title">Create your flowchart</p>
+        <p class="empty-body">Drag an element here or click an element<br>to add it to the canvas.</p>
+      </div>
+    </main>
+
+  </div>
+
+  <div class="modal-backdrop" id="modal-new" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-new-title">
+      <p class="modal-title" id="modal-new-title">Start a new flowchart?</p>
+      <p class="modal-body">Your current flowchart will be cleared.</p>
+      <div class="modal-actions">
+        <button type="button" class="tb-btn" id="modal-new-cancel">Cancel</button>
+        <button type="button" class="tb-btn tb-btn-primary" id="modal-new-confirm">Create New</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
