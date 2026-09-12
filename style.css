@@ -256,8 +256,8 @@ body{
 
 .canvas{
   position: relative;
-  width: 2400px;
-  height: 1600px;
+  width: 6000px;
+  height: 4000px;
   background-color: var(--bg-panel);
   background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
   background-size: 22px 22px;
